@@ -34,6 +34,28 @@ Opciones del comando `total`:
 Para sacar el resumen en CSV se usa `carrito.exportar.a_csv()`, que es lo que
 consume el sistema de reportes.
 
+## Problemas conocidos
+
+- **`iva()` trunca en vez de redondear.** `carrito.dinero` define una política
+  de redondeo centralizada (`redondear()`, usada por `porcentaje()`), pero
+  `carrito.impuestos.iva()` calcula con `int(monto * IVA / 100)`, que trunca.
+  El IVA puede quedar $1 más bajo de lo que correspondería en montos que
+  redondearían hacia arriba.
+- **Un pedido a un número inexistente revienta con traceback.**
+  `carrito.datos.pedido()` documenta que lanza `KeyError` si el número no
+  existe, pero `cli.py` no lo captura — no hay un mensaje de error legible
+  para el usuario del CLI.
+- **Sin tests automatizados.** No hay carpeta `tests/` ni `pytest` en
+  `pyproject.toml`. El bug de `exportar.a_csv()` (ya corregido) sobrevivió
+  varios commits precisamente por esto.
+- **Nombres en inglés dentro de un código en español.**
+  `descuentos.volume_discount(order, amount)` y
+  `envio.free_shipping_for_new_customer(order)` rompen la convención de
+  nombres en español (`pedido`, `monto`) del resto del proyecto.
+- **`datos.cargar()` relee y reparsea `ejemplo.json` en cada llamada**, sin
+  caché. No es un problema hoy, pero conviene resolverlo antes de que el CLI
+  se use con más frecuencia o se reemplace por la API REST planeada.
+
 ## Próximos pasos
 
 - Los pedidos se van a mover de `datos/ejemplo.json` a **Postgres**; el módulo
