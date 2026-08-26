@@ -7,5 +7,5 @@ def a_csv(resumen, salida):
     """Escribe el resumen en `salida`, una fila por línea del desglose."""
     escritor = csv.writer(salida)
     escritor.writerow(["concepto", "monto"])
-    for etiqueta, monto in resumen:
+    for etiqueta, monto in resumen.items():
         escritor.writerow([etiqueta, monto])
