@@ -23,7 +23,7 @@ Opciones del comando `total`:
    compra, si el pedido las trae (`pedido.promociones`). Se calculan sobre el
    subtotal y se suman entre sí.
 3. **Cupones** — sobre el monto que queda tras las promociones: primero los
-   vales de monto fijo, después los cupones porcentuales. El orden importa
+   cupones porcentuales, después los vales de monto fijo. El orden importa
    cuando hay más de uno.
 4. **IVA** — 19% sobre el monto ya descontado.
 5. **Envío** — según la región, gratis sobre los $50.000 o gratis para
