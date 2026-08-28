@@ -40,9 +40,11 @@ consume el sistema de reportes.
   `carrito.datos.pedido()` documenta que lanza `KeyError` si el número no
   existe, pero `cli.py` no lo captura — no hay un mensaje de error legible
   para el usuario del CLI.
-- **Sin tests automatizados.** No hay carpeta `tests/` ni `pytest` en
-  `pyproject.toml`. El bug de `exportar.a_csv()` (ya corregido) sobrevivió
-  varios commits precisamente por esto.
+- **Cobertura de tests parcial.** `tests/` solo cubre `descuentos.py` e
+  `impuestos.py` (corrieron en CI el orden de cupones y el redondeo del
+  IVA). `precios.py`, `envio.py`, `resumen.py`, `exportar.py`, `cli.py` y
+  `datos.py` no tienen tests. El bug de `exportar.a_csv()` (ya corregido)
+  sobrevivió varios commits cuando todavía no había ninguno.
 - **Nombres en inglés dentro de un código en español.**
   `descuentos.volume_discount(order, amount)` y
   `envio.free_shipping_for_new_customer(order)` rompen la convención de
