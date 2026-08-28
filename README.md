@@ -36,11 +36,6 @@ consume el sistema de reportes.
 
 ## Problemas conocidos
 
-- **`iva()` trunca en vez de redondear.** `carrito.dinero` define una política
-  de redondeo centralizada (`redondear()`, usada por `porcentaje()`), pero
-  `carrito.impuestos.iva()` calcula con `int(monto * IVA / 100)`, que trunca.
-  El IVA puede quedar $1 más bajo de lo que correspondería en montos que
-  redondearían hacia arriba.
 - **Un pedido a un número inexistente revienta con traceback.**
   `carrito.datos.pedido()` documenta que lanza `KeyError` si el número no
   existe, pero `cli.py` no lo captura — no hay un mensaje de error legible
