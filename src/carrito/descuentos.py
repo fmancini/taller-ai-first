@@ -51,11 +51,18 @@ def descuento_promociones(pedido, monto: int) -> int:
     return sum(PROMOCIONES[nombre](pedido, monto) for nombre in pedido.promociones)
 
 
-def total_con_descuentos(pedido) -> int:
+def monto_tras_promociones(pedido) -> int:
     monto = subtotal(pedido)
-    monto -= descuento_promociones(pedido, monto)
+    return monto - descuento_promociones(pedido, monto)
+
+
+def monto_tras_cupones(pedido, monto: int) -> int:
     fijos = [c for c in pedido.cupones if c.tipo == "monto"]
     porcentuales = [c for c in pedido.cupones if c.tipo == "porcentaje"]
     for cupon in porcentuales + fijos:
         monto = aplicar_cupon(monto, cupon)
     return max(0, monto)
+
+
+def total_con_descuentos(pedido) -> int:
+    return monto_tras_cupones(pedido, monto_tras_promociones(pedido))
