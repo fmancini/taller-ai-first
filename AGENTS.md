@@ -70,9 +70,9 @@ aplica la regla al código que agregues o toques de ahora en más.
 
 - `cli.py` no captura el `KeyError` que lanza `datos.pedido()` cuando el
   número de pedido no existe — hoy se ve como un traceback crudo.
-- La cobertura de tests es parcial: solo `descuentos.py` e `impuestos.py`
-  tienen tests. `precios.py`, `envio.py`, `resumen.py`, `cli.py` y
-  `datos.py` no tienen.
+  `tests/test_cli.py::test_pedido_inexistente_revienta_con_keyerror` fija
+  ese comportamiento actual; si se agrega manejo de errores, ese test hay
+  que actualizarlo.
 
 ## Documentación vs. código
 
