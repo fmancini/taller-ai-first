@@ -1,6 +1,7 @@
 """Línea de comandos del carrito."""
 
 import argparse
+import sys
 
 from carrito.datos import pedido
 from carrito.descuentos import PROMOCIONES
@@ -16,7 +17,11 @@ def main():
     parser.add_argument("--detalle", action="store_true")
     args = parser.parse_args()
 
-    elegido = pedido(args.pedido)
+    try:
+        elegido = pedido(args.pedido)
+    except KeyError:
+        print(f"Error: no existe el pedido {args.pedido}.", file=sys.stderr)
+        raise SystemExit(1)
     elegido.promociones = [p for p in elegido.promociones if p not in args.sin]
     if args.detalle:
         for linea in elegido.lineas:

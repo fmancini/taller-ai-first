@@ -31,10 +31,6 @@ Opciones del comando `total`:
 
 ## Problemas conocidos
 
-- **Un pedido a un número inexistente revienta con traceback.**
-  `carrito.datos.pedido()` documenta que lanza `KeyError` si el número no
-  existe, pero `cli.py` no lo captura — no hay un mensaje de error legible
-  para el usuario del CLI.
 - **Nombres en inglés dentro de un código en español.**
   `descuentos.volume_discount(order, amount)` y
   `envio.free_shipping_for_new_customer(order)` rompen la convención de

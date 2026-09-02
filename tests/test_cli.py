@@ -56,11 +56,15 @@ def test_sin_excluye_la_promocion_del_calculo(monkeypatch, capsys):
     assert summary == {"Subtotal": 107880, "IVA": 20497, "Envío": 0, "Total": 128377}
 
 
-def test_pedido_inexistente_revienta_con_keyerror(monkeypatch):
-    """Documenta la deuda conocida en AGENTS.md: cli.py no captura el
-    KeyError que lanza datos.pedido() para un número inexistente.
-    """
+def test_pedido_inexistente_imprime_error_legible_y_sale_con_codigo_distinto_de_cero(
+    monkeypatch, capsys
+):
     monkeypatch.setattr("sys.argv", ["carrito", "total", "--pedido", "999999"])
 
-    with pytest.raises(KeyError):
+    with pytest.raises(SystemExit) as excinfo:
         main()
+
+    assert excinfo.value.code == 1
+    captured = capsys.readouterr()
+    assert captured.err == "Error: no existe el pedido 999999.\n"
+    assert captured.out == ""
