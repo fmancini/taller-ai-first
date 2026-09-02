@@ -29,11 +29,6 @@ Opciones del comando `total`:
 5. **Envío** — según la región, gratis sobre los $50.000 o gratis para
    clientes en su primera compra (`cliente_nuevo`).
 
-## Reportes
-
-Para sacar el resumen en CSV se usa `carrito.exportar.a_csv()`, que es lo que
-consume el sistema de reportes.
-
 ## Problemas conocidos
 
 - **Un pedido a un número inexistente revienta con traceback.**
@@ -42,20 +37,12 @@ consume el sistema de reportes.
   para el usuario del CLI.
 - **Cobertura de tests parcial.** `tests/` solo cubre `descuentos.py` e
   `impuestos.py` (corrieron en CI el orden de cupones y el redondeo del
-  IVA). `precios.py`, `envio.py`, `resumen.py`, `exportar.py`, `cli.py` y
-  `datos.py` no tienen tests. El bug de `exportar.a_csv()` (ya corregido)
-  sobrevivió varios commits cuando todavía no había ninguno.
+  IVA). `precios.py`, `envio.py`, `resumen.py`, `cli.py` y `datos.py` no
+  tienen tests.
 - **Nombres en inglés dentro de un código en español.**
   `descuentos.volume_discount(order, amount)` y
   `envio.free_shipping_for_new_customer(order)` rompen la convención de
   nombres en español (`pedido`, `monto`) del resto del proyecto.
 - **`datos.cargar()` relee y reparsea `ejemplo.json` en cada llamada**, sin
   caché. No es un problema hoy, pero conviene resolverlo antes de que el CLI
-  se use con más frecuencia o se reemplace por la API REST planeada.
-
-## Próximos pasos
-
-- Los pedidos se van a mover de `datos/ejemplo.json` a **Postgres**; el módulo
-  `carrito.datos` va a hablar con la base a través de SQLAlchemy.
-- La **API REST** reemplaza al CLI. El CLI queda como herramienta de depuración.
-- El catálogo de productos pasa a un servicio aparte y se consulta por HTTP.
+  se use con más frecuencia.
