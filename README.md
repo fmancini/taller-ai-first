@@ -35,10 +35,6 @@ Opciones del comando `total`:
   `carrito.datos.pedido()` documenta que lanza `KeyError` si el número no
   existe, pero `cli.py` no lo captura — no hay un mensaje de error legible
   para el usuario del CLI.
-- **Cobertura de tests parcial.** `tests/` solo cubre `descuentos.py` e
-  `impuestos.py` (corrieron en CI el orden de cupones y el redondeo del
-  IVA). `precios.py`, `envio.py`, `resumen.py`, `cli.py` y `datos.py` no
-  tienen tests.
 - **Nombres en inglés dentro de un código en español.**
   `descuentos.volume_discount(order, amount)` y
   `envio.free_shipping_for_new_customer(order)` rompen la convención de
