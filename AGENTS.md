@@ -66,14 +66,6 @@ de ahora en adelante, todo identificador nuevo (funciones, variables,
 parámetros, clases) va en inglés. No renombres lo existente solo por esto;
 aplica la regla al código que agregues o toques de ahora en más.
 
-## Deudas conocidas
-
-- `cli.py` no captura el `KeyError` que lanza `datos.pedido()` cuando el
-  número de pedido no existe — hoy se ve como un traceback crudo.
-  `tests/test_cli.py::test_pedido_inexistente_revienta_con_keyerror` fija
-  ese comportamiento actual; si se agrega manejo de errores, ese test hay
-  que actualizarlo.
-
 ## Documentación vs. código
 
 Si la documentación (README, docstrings, este archivo) contradice lo que
