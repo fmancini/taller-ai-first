@@ -26,8 +26,8 @@ Opciones del comando `total`:
    cupones porcentuales, después los vales de monto fijo. El orden importa
    cuando hay más de uno.
 4. **IVA** — 19% sobre el monto ya descontado.
-5. **Envío** — según la región, gratis sobre los $50.000 o gratis para
-   clientes en su primera compra (`cliente_nuevo`).
+5. **Envío** — según la región, gratis sobre los $50.000 (monto descontado
+   más IVA) o gratis para clientes en su primera compra (`cliente_nuevo`).
 
 ## Problemas conocidos
 
