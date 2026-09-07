@@ -1,7 +1,8 @@
 """Costo de envío según la región de destino.
 
 Sobre cierto monto el envío no se cobra. El umbral se compara contra el monto
-que el cliente efectivamente paga por los productos.
+que el cliente efectivamente paga: subtotal, ya con promociones y cupones
+aplicados, más IVA.
 """
 
 TRAMOS = {

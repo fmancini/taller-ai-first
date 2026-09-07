@@ -21,7 +21,7 @@ def resumen(pedido) -> dict[str, int]:
     tras_promociones = monto_tras_promociones(pedido)
     tras_cupones = monto_tras_cupones(pedido, tras_promociones)
     impuesto = iva(tras_cupones)
-    envio = costo_envio(pedido, tras_cupones)
+    envio = costo_envio(pedido, tras_cupones + impuesto)
 
     lineas = {"Subtotal": base}
     if tras_promociones != base:

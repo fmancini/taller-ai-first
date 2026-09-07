@@ -24,9 +24,11 @@ def test_total_imprime_el_resumen_alineado(monkeypatch, capsys):
     main()
 
     # Pedido 42: LIBR-02 (12500) + LANA-03 (36900) = subtotal 49400, sin
-    # promociones ni cupones, región metropolitana.
+    # promociones ni cupones, región metropolitana. Subtotal + IVA (9386) =
+    # 58786, que ya supera el umbral de envío gratis ($50.000 con IVA
+    # incluido).
     summary = parse_summary(capsys.readouterr().out)
-    assert summary == {"Subtotal": 49400, "IVA": 9386, "Envío": 3990, "Total": 62776}
+    assert summary == {"Subtotal": 49400, "IVA": 9386, "Envío": 0, "Total": 58786}
 
 
 def test_detalle_imprime_cada_linea_y_un_separador(monkeypatch, capsys):
