@@ -29,6 +29,17 @@ Opciones del comando `total`:
 5. **Envío** — según la región, gratis sobre los $50.000 (monto descontado
    más IVA) o gratis para clientes en su primera compra (`cliente_nuevo`).
 
+## Tests
+
+```sh
+uv run pytest                          # toda la suite
+uv run pytest tests/test_envio_bdd.py  # solo los escenarios de envío gratis
+```
+
+Los criterios de aceptación de la regla de envío gratis están en
+`tests/features/envio.feature` (Gherkin en español) y se ejecutan como tests
+con `pytest-bdd` desde `tests/test_envio_bdd.py`.
+
 ## Problemas conocidos
 
 - **Nombres en inglés dentro de un código en español.**
