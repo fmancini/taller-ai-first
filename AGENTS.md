@@ -10,6 +10,7 @@ uv run python -m carrito total --pedido 42   # correr el CLI (el único comando 
 uv run pytest                                # correr toda la suite de tests
 uv run pytest tests/test_impuestos.py        # correr un archivo de tests
 uv run pytest tests/test_impuestos.py::test_iva_redondea_el_medio_peso_hacia_arriba  # correr un test puntual
+uv run pytest tests/test_envio_bdd.py        # solo los escenarios Gherkin de envío gratis
 ```
 
 Opciones del CLI para `total`: `--pedido <n>` (obligatorio), `--detalle`
@@ -45,7 +46,10 @@ módulo:
 4. **IVA** (`impuestos.py`) — 19% sobre el monto ya descontado.
 5. **Envío** (`envio.py`) — tarifa plana según la región (`TRAMOS`), gratis
    sobre `UMBRAL_ENVIO_GRATIS` ($50.000) o para `cliente_nuevo` en su primera
-   compra.
+   compra. **El umbral se compara contra el monto con IVA incluido**, no
+   contra el monto ya descontado sin IVA — fue un bug antes; los criterios
+   Gherkin en `tests/features/envio.feature` (ejecutados vía pytest-bdd
+   desde `tests/test_envio_bdd.py`) lo protegen.
 
 `resumen.py` vuelve a correr este pipeline (no usa
 `descuentos.total_con_descuentos`, que solo usan los tests) para armar el
